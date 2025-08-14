@@ -1,8 +1,14 @@
+@using Microsoft.AspNetCore.Components
+
+@using System.Threading;
+@inject NavigationManager Navigation
+
 @{
   Layout = "_BlankLayout";
   ViewData["Title"] = "Login Basic - Pages";
   TempData["appName"] = "DataViz Manager";
 }
+
 
 @section PageStyles {
   <link rel="stylesheet" href="~/vendor/css/pages/page-auth.css">
@@ -27,7 +33,7 @@
           <h3 class="mb-1 text-center">Sign in</h3>
           <p class="mb-6">Please sign-in to your account</p>
 
-          <form id="formAuthentication" class="mb-6" action="~/" method="POST">
+          <form id="formAuthentication" class="mb-6" asp-controller="Auth" asp-action="" method="POST">
             <div class="mb-6">
               <label for="email" class="form-label">Email or Username</label>
               <input type="text" class="form-control" id="email" name="email-username"

@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -15,6 +17,13 @@ if (!app.Environment.IsDevelopment())
   app.UseHsts();
 }
 
+builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+      options.LoginPath = "/Auth/Login";
+    });
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -25,5 +34,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Auth}/{action=LoginBasic}/{id?}");
+
 
 app.Run();
