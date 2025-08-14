@@ -1,7 +1,13 @@
+@using Microsoft.AspNetCore.Components
+
+@using System.Threading;
+@inject NavigationManager Navigation
+
 @{
   Layout = "_BlankLayout";
   ViewData["Title"] = "Login Basic - Pages";
 }
+
 
 @section PageStyles {
 <link rel="stylesheet" href="~/vendor/css/pages/page-auth.css">
@@ -26,7 +32,7 @@
           <h4 class="mb-1">Welcome to @TempData.Peek("appName")! 👋</h4>
           <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
-          <form id="formAuthentication" class="mb-6" action="~/" method="POST">
+          <form id="formAuthentication" class="mb-6" asp-controller="Auth" asp-action="" method="POST">
             <div class="mb-6">
               <label for="email" class="form-label">Email or Username</label>
               <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus>

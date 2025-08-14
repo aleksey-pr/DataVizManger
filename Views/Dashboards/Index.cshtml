@@ -12,6 +12,13 @@
 }
 
 @* ************** Content ************** *@
+
+@if (TempData["LoginMessage"] != null)
+{
+  <script>
+    alert('@TempData["LoginMessage"]');
+  </script>
+}
 <div class="row">
 
 </div>
