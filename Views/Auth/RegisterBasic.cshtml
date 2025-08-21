@@ -9,6 +9,13 @@
 
 @* ************** Content ************** *@
 
+@if (ViewData["ErrorMessage"] != null)
+{
+  @* <div class="alert alert-danger">@ViewData["ErrorMessage"]</div> *@
+  <script>alert("@ViewData["ErrorMessage"]");</script>
+}
+
+
 <div class="container-xxl">
   <div class="authentication-wrapper authentication-basic container-p-y">
     <div class="authentication-inner">
@@ -27,7 +34,7 @@
           <h4 class="mb-1 text-center">Sign Up</h4>
           <p class="mb-6">Make your app management easy and fun!</p>
 
-          <form id="formAuthentication" class="mb-6" action="~/" method="POST">
+          <form id="formAuthentication" class="mb-6" asp-controller="Auth" asp-action="Register" method="POST">
             <div class="mb-6">
               <label for="username" class="form-label">Username</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username"

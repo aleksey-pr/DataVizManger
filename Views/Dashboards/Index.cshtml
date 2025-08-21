@@ -13,10 +13,23 @@
 
 @* ************** Content ************** *@
 
-@if (TempData["LoginMessage"] != null)
+@if (TempData["LoginSuccess"] != null)
 {
   <script>
-    alert('@TempData["LoginMessage"]');
+    alert("Login Success");
+    @* (function () {
+      swal({
+        title: "Message",
+        text: "Your message has been sent successfully",
+        type: 'success',
+        showCancelButton: false,
+        allowOutsideClick: false,
+        confirmButtonColor: "green",
+        confirmButtonText: "Ok"
+      }).then(function () {
+      });
+    }); *@
+
   </script>
 }
 <div class="row">
