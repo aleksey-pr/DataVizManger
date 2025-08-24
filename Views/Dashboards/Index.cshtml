@@ -1,5 +1,5 @@
 @{
-  ViewData["Title"] = "Dashboard - Analytics";
+  ViewData["Title"] = "Dashboard";
 }
 @section VendorStyles {
   <link rel="stylesheet" href="~/vendor/libs/apex-charts/apex-charts.css" />
@@ -9,6 +9,7 @@
 }
 @section PageScripts {
   <script src="~/js/dashboards-analytics.js"></script>
+  <script src="~/js/form-basic-inputs.js"></script>
 }
 
 @* ************** Content ************** *@
@@ -31,7 +32,9 @@
     }); *@
 
   </script>
+  TempData.Remove("LoginSuccess");
 }
+
 <div class="row">
 
 </div>

@@ -28,6 +28,25 @@ namespace DataVizManger.Migrations
           {
             table.PrimaryKey("PK_Users", x => x.Id);
           });
+      migrationBuilder.CreateTable(
+          name: "Reports",
+          columns: table => new
+          {
+            Id = table.Column<int>(type: "integer", nullable: false)
+                  .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+            VoiceCallCount = table.Column<int>(type: "integer", nullable: false),
+            VideoCallCount = table.Column<int>(type: "integer", nullable: false),
+            MockInterviewCount = table.Column<int>(type: "integer", nullable: false),
+            AppliedJobCount = table.Column<int>(type: "integer", nullable: false),
+            Date = table.Column<string>(type: "string", nullable: false),
+            Standup = table.Column<string>(type: "string", nullable: false),
+            Daily = table.Column<string>(type: "string", nullable: false),
+            CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+          },
+          constraints: table =>
+          {
+            table.PrimaryKey("PK_Users", x => x.Id);
+          });
     }
 
     /// <inheritdoc />
