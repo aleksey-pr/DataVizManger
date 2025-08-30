@@ -1,0 +1,84 @@
+@{
+  ViewData["Title"] = "Report";
+}
+
+@section PageScripts {
+  <script src="~/js/dashboards-analytics.js"></script>
+  <script src="~/js/form-basic-inputs.js"></script>
+}
+
+@* ************** Content ************** *@
+@if (TempData["WRSaved"] != null)
+{
+  <script>
+    alert("WRSaved");
+  </script>
+  TempData.Remove("WRSaved");
+}
+@if (TempData["Invalid"] != null)
+{
+  <script>
+    alert("Invalid ModelState");
+  </script>
+  TempData.Remove("Invalid");
+}
+
+<div class="row g-6">
+  <!-- Form controls -->
+  <div class="col-md-6">
+    <form asp-controller="Report" asp-action="SaveWR" method="POST">
+      <div class="card">
+        <h5 class="card-header">Work Result</h5>
+        <div class="card-body px-12">
+          <div>
+            <label for="html5-number-input" class="col-md-2 col-form-label">Voice Call</label>
+            <input class="form-control" type="number" value="" name="VoiceCallCount" id="html5-number-input" />
+          </div>
+          <div>
+            <label for="html5-number-input" class="col-md-2 col-form-label">Video Call</label>
+            <input class="form-control" type="number" value="" name="VideoCallCount" id="html5-number-input" />
+          </div>
+          <div>
+            <label for="html5-number-input" class="col-md-2 col-form-label">Mock Interview</label>
+            <input class="form-control" type="number" value="" name="MockInterviewCount" id="html5-number-input" />
+          </div>
+          <div>
+            <label for="html5-date-input" class="col-md-2 col-form-label">Date</label>
+            <input class="form-control" type="date" value="2021-06-18" name="Date" id="html5-date-input" />
+          </div>
+          <button type="submit" class="btn btn-primary mt-3 float-end" id="btnWRSave">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- Input Sizing -->
+  <div class="col-md-6">
+    <div class="card">
+      <h5 class="card-header">Report</h5>
+
+      <div class="card-body">
+        <form asp-controller="Report" asp-action="SaveSR" method="POST">
+          <small class="text-light fw-medium">Standup Report</small>
+          <div>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3 float-end" id="btnSRSave">Save</button>
+        </form>
+      </div>
+
+      <hr class="m-0" />
+
+      <div class="card-body">
+        <form asp-controller="Report" asp-action="SaveDR" method="POST">
+          <small class="text-light fw-medium">Daily Report</small>
+          <div>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3 float-end" id="btnDRSave">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
