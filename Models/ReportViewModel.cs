@@ -6,8 +6,5 @@ public class ReportViewModel
   public string VideoCallCount { get; set; }
   public string MockInterviewCount { get; set; }
   public string AppliedJobCount { get; set; }
-  public string DailyReport { get; set; }
-  public string StandupReport { get; set; }
   public string UserName { get; set; }
-  public string Date { get; set; }
 }

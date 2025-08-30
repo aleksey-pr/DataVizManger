@@ -31,8 +31,6 @@ public class Reports
 
   public string MockInterviewCount { get; set; }
   public string AppliedJob { get; set; }
-  public string Standup { get; set; }
-  public string Daily { get; set; }
-  public string Date { get; set; }
+  public string UserName { get; set; }
   public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
