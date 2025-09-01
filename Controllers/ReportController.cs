@@ -51,4 +51,61 @@ public class ReportController : Controller
     TempData["WRSaved"] = "WRSaved";
     return RedirectToAction("Index", "Report");
   }
+
+  public async Task<IActionResult> DeleteRow(int? id)
+  {
+    if (id == null || id == 0)
+    {
+      TempData["NotFound"] = "Invalid Report Id";
+      return NotFound();
+    }
+
+    var report = await _db.Reports.FindAsync(id);
+    if (report == null)
+    {
+      TempData["NotFound"] = "Invalid Report Id";
+      return NotFound();
+    }
+
+    _db.Reports.Remove(report);
+    await _db.SaveChangesAsync();
+
+    TempData["DeleteSuccess"] = "Report deleted successfully";
+    return RedirectToAction("Index");
+  }
+
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> EditRow(int id, Reports model)
+  {
+    if (id != model.Id)
+    {
+      TempData["NotFound"] = "Invalid Report Id";
+      return NotFound();
+    }
+    Console.WriteLine("Id: " + model.Id + ", VoiceCallCount: " + model.VoiceCallCount + ", VideoCallCount: " + model.VideoCallCount + ", MockInterviewCount: " + model.MockInterviewCount + ", AppliedJob: " + model.AppliedJob);
+
+    if (ModelState.IsValid)
+    {
+      var report = await _db.Reports.FindAsync(id);
+      if (report == null)
+      {
+        TempData["NotFound"] = "Invalid Report Id";
+        return NotFound();
+      }
+
+      // Update fields
+      report.VoiceCallCount = model.VoiceCallCount;
+      report.VideoCallCount = model.VideoCallCount;
+      report.MockInterviewCount = model.MockInterviewCount;
+      report.AppliedJob = model.AppliedJob;
+      // Add other fields as needed
+
+      await _db.SaveChangesAsync();
+      TempData["EditSuccess"] = "Report updated successfully";
+      return RedirectToAction("Index");
+    }
+    TempData["Invalid"] = "Invalid ModelState";
+    return RedirectToAction("Index");
+  }
 }
