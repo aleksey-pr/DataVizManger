@@ -38,9 +38,6 @@ namespace DataVizManger.Migrations
             VideoCallCount = table.Column<int>(type: "integer", nullable: false),
             MockInterviewCount = table.Column<int>(type: "integer", nullable: false),
             AppliedJobCount = table.Column<int>(type: "integer", nullable: false),
-            Date = table.Column<string>(type: "string", nullable: false),
-            Standup = table.Column<string>(type: "string", nullable: false),
-            Daily = table.Column<string>(type: "string", nullable: false),
             CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
           },
           constraints: table =>

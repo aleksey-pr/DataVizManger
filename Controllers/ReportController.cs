@@ -15,7 +15,11 @@ public class ReportController : Controller
     _db = db;
   }
 
-  public IActionResult Index() => View();
+  public IActionResult Index()
+  {
+    IEnumerable<Reports> reportsList = _db.Reports;
+    return View(reportsList);
+  }
 
   [HttpPost]
   public async Task<IActionResult> SaveWR(ReportViewModel model)
@@ -38,7 +42,7 @@ public class ReportController : Controller
       VideoCallCount = model.VideoCallCount,
       MockInterviewCount = model.MockInterviewCount,
       AppliedJob = model.AppliedJobCount,
-      Date = model.Date
+      UserName = model.UserName
     };
 
     _db.Reports.Add(report);
