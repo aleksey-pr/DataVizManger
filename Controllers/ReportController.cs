@@ -17,7 +17,13 @@ public class ReportController : Controller
 
   public IActionResult Index()
   {
-    IEnumerable<Reports> reportsList = _db.Reports;
+    // IEnumerable<Reports> reportsList = _db.Reports;
+    // return View(reportsList);
+    var userName = User.Identity?.Name;
+
+    // Filter reports for this user
+    var reportsList = _db.Reports.Where(r => r.UserName == userName).ToList();
+
     return View(reportsList);
   }
 
