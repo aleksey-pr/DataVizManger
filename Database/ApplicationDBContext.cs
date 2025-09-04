@@ -25,12 +25,12 @@ public class User
 public class Reports
 {
   public int Id { get; set; }
-  public string VoiceCallCount { get; set; }
+  public int VoiceCallCount { get; set; }
 
-  public string VideoCallCount { get; set; }
+  public int VideoCallCount { get; set; }
 
-  public string MockInterviewCount { get; set; }
-  public string AppliedJob { get; set; }
+  public int MockInterviewCount { get; set; }
+  public int AppliedJob { get; set; }
   public string UserName { get; set; }
   public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
