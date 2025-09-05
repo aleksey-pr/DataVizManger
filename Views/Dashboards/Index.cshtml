@@ -1,5 +1,7 @@
 @{
   ViewData["Title"] = "Dashboard";
+  var statsJson = (string)ViewData["UserStats"];
+  var users = (IEnumerable<dynamic>)ViewData["Users"];
 }
 @section VendorStyles {
   <link rel="stylesheet" href="~/vendor/libs/apex-charts/apex-charts.css" />
@@ -10,6 +12,8 @@
 @section PageScripts {
   <script src="~/js/dashboards-analytics.js"></script>
   <script src="~/js/form-basic-inputs.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="~/js/site.js"></script>
 }
 
 @* ************** Content ************** *@
@@ -18,23 +22,26 @@
 {
   <script>
     alert("Login Success");
-    @* (function () {
-      swal({
-        title: "Message",
-        text: "Your message has been sent successfully",
-        type: 'success',
-        showCancelButton: false,
-        allowOutsideClick: false,
-        confirmButtonColor: "green",
-        confirmButtonText: "Ok"
-      }).then(function () {
-      });
-    }); *@
-
   </script>
   TempData.Remove("LoginSuccess");
 }
 
+
 <div class="row">
 
+  <h2>User Stats</h2>
+
+  <select id="userDropdown" onchange="loadUserStats(this.value)">
+    <option value="">-- Select User --</option>
+    @foreach (var user in users)
+    {
+      <option value="@user.UserName">@user.UserName</option>
+    }
+  </select>
+  <select id="chartType" onchange="reloadChart()">
+    <option value="bar">Bar</option>
+    <option value="line">Line</option>
+    <option value="pie">Pie</option>
+  </select>
+  <div id="chart"></div>
 </div>
